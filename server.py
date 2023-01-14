@@ -7,7 +7,6 @@ localIP     = "192.168.50.251"
 localPort   = 8080
 bufferSize  = 131072
 
-
 def listen(host: str = localIP, port: int = localPort):
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     s.bind((host, port))
@@ -24,9 +23,8 @@ def listen(host: str = localIP, port: int = localPort):
             msg, addr = s.recvfrom(bufferSize)
             buffer += msg
             packet_count += 1
+            
             if (packet_count == 4):
-                
-
                 np_array = np.frombuffer(buffer, np.uint8)
                 img = cv2.imdecode(np_array, cv2.IMREAD_COLOR) 
 
