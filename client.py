@@ -22,20 +22,16 @@ def connect(host: str = localIP, port: int = localPort):
                 data_encode = np.array(image_encode) # Converting the image into numpy array
                 byte_encode = data_encode.tobytes()  # Converting the array to bytes. #ready for socket
             
-
                 splited = np.array_split(data_encode, 4)
                 byte_encode_1 = splited[0]
                 byte_encode_2 = splited[1]
                 byte_encode_3 = splited[2]
                 byte_encode_4 = splited[3]
-            
-                #print('success')
-
+                
                 #cv2.imshow('client', frame)
                 #if cv2.waitKey(1) & 0xFF == ord('q'):
                 #    break
 
-    
                 s.send(bytearray(byte_encode_1))
                 s.send(bytearray(byte_encode_2))
                 s.send(bytearray(byte_encode_3))
